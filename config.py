@@ -13,6 +13,6 @@ temperature = 0.7
 k = 20
 p = 0.9
 repetition_penalty = 1.0
-num_return_sequences = 1 # num generated songs
+num_return_sequences = 1  # num generated songs
 length = 500
 stop_token = '|EndOfText|'

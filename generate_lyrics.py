@@ -1,6 +1,7 @@
 from config import *
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
 
+
 def get_model_tokenizer(weights_dir):
     print("Loading Model ...")
     model = GPT2LMHeadModel.from_pretrained(weights_dir)
@@ -19,7 +20,7 @@ def generate_lyrics(prompt_text):
 
     output_sequences = model.generate(
         input_ids=encoded_prompt,
-        max_length= min(length, model.config.max_position_embeddings) + len(encoded_prompt[0]),
+        max_length=min(length, model.config.max_position_embeddings) + len(encoded_prompt[0]),
         temperature=temperature,
         top_k=k,
         top_p=p,
