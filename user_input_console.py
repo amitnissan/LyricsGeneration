@@ -1,8 +1,10 @@
 import os
 from config import *
 
+
 class IllegalArgumentError(ValueError):
     pass
+
 
 def get_user_input() -> (str, str):
     print("\n\n\n*・゜・*:.。.*.。.:*・☆・゜・*:.。.*.。.:*・☆・゜・*:.。.*.。.:*・☆・゜・*:.。.:*・☆・゜・*:.。.*.。.:*・゜・*")
@@ -30,9 +32,11 @@ def get_user_input() -> (str, str):
             print(f"{artists_dict[chosen_artist_number]} is a great choice!")
             break
 
-    chosen_prompt_text = input(f"\nEnter a sentence you wish {artists_dict[chosen_artist_number]} start with (for example: \"COVID-19 was like a\"...): ")
+    chosen_prompt_text = input(
+        f"\nEnter a sentence you wish {artists_dict[chosen_artist_number]} start with (for example: \"COVID-19 was like a\"...): ")
 
     print("\n\n\n*・゜・*:.。.*.。.:*・☆・゜・*:.。.*.。.:*・☆・゜・*:.。.*.。.:*・☆・゜・*:.。.:*・☆・゜・*:.。.*.。.:*・゜・*")
-    print(f"\t\t♪♫♪ Generating a new song by {artists_dict[chosen_artist_number]} talking about \'{chosen_prompt_text}\'... ♪♫♪\n")
+    print(
+        f"\t\t♪♫♪ Generating a new song by {artists_dict[chosen_artist_number]} talking about \'{chosen_prompt_text}\'... ♪♫♪\n")
 
     return artists_dict[chosen_artist_number], chosen_prompt_text
