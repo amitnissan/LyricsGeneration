@@ -2,16 +2,15 @@ import subprocess
 import os
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-from data_preprocess import pull_lyrics
-from generate_lyrics import generate_lyrics
-from user_input_console import get_user_input
-
 # install transformers with 4.17.dev version
 with open(f'install_dev_transformers.sh', 'rb') as file:
     script = file.read()
 _ = subprocess.call(script, shell=True)
 
-from config import *
+
+from data_preprocess import pull_lyrics
+from generate_lyrics import generate_lyrics
+from user_input_console import get_user_input
 from fine_tune import fine_tune
 
 
