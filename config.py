@@ -1,3 +1,4 @@
+lyrics_dir_path = 'Data/'
 temperature = 1.0
 k = 400
 p = 0.9
@@ -5,5 +6,4 @@ repetition_penalty = 1.0
 num_return_sequences = 5
 length = 1000
 stop_token = '|EndOfText|'
-prompt_text = "this is"
-MAX_LENGTH = int(10000)
+MAX_LENGTH = int(100)
