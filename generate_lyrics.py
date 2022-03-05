@@ -1,30 +1,17 @@
-from config import MAX_LENGTH
+from config import *
+from transformers import GPT2LMHeadModel, GPT2Tokenizer
+
+def get_model_tokenizer(weights_dir):
+    print("Loading Model ...")
+    model = GPT2LMHeadModel.from_pretrained(weights_dir)
+    # model.to(device) FIXME line doesnt work
+    print("Model Loaded ...")
+    tokenizer = GPT2Tokenizer.from_pretrained(weights_dir)
+    return model, tokenizer
 
 
-def generate_messages(
-        model,
-        tokenizer,
-        prompt_text,
-        stop_token,
-        length,
-        num_return_sequences,
-        temperature=0.7,
-        k=20,
-        p=0.9,
-        repetition_penalty=1.0,
-        device='cuda'
-):
-
-    def adjust_length_to_model(length, max_sequence_length):
-        if length < 0 and max_sequence_length > 0:
-            length = max_sequence_length
-        elif 0 < max_sequence_length < length:
-            length = max_sequence_length  # No generation bigger than model size
-        elif length < 0:
-            length = MAX_LENGTH  # avoid infinite loop
-        return length
-
-    length = adjust_length_to_model(length=length, max_sequence_length=model.config.max_position_embeddings)
+def generate_lyrics(prompt_text):
+    model, tokenizer = get_model_tokenizer(output_dir)
 
     encoded_prompt = tokenizer.encode(prompt_text, add_special_tokens=False, return_tensors="pt")
 
@@ -32,7 +19,7 @@ def generate_messages(
 
     output_sequences = model.generate(
         input_ids=encoded_prompt,
-        max_length=length + len(encoded_prompt[0]),
+        max_length= min(length, model.config.max_position_embeddings) + len(encoded_prompt[0]),
         temperature=temperature,
         top_k=k,
         top_p=p,
@@ -47,7 +34,6 @@ def generate_messages(
     generated_sequences = []
 
     for generated_sequence_idx, generated_sequence in enumerate(output_sequences):
-        # print("=== GENERATED SEQUENCE {} ===".format(generated_sequence_idx + 1))
         generated_sequence = generated_sequence.tolist()
 
         # Decode text
