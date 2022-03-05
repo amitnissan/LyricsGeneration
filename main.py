@@ -1,40 +1,36 @@
-import pandas as pd
 import subprocess
+import os
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-def pull_lyrics():
-    data = pd.read_csv('Data/Avicii.csv')
-    texts = list(set(data.Lyrics))
-    file_name = 'text_for_fine_tune.txt'
-    output_dir = 'output'
-    with open(file_name, 'w') as f:
-        f.write(" |EndOfText|\n".join(texts))
-    return file_name, output_dir
+from data_preprocess import pull_lyrics
+from generate_lyrics import generate_lyrics
+from user_input_console import get_user_input
 
-def fine_tune(file_name, output_dir):
-    cmd = '''
-    python transformers/examples/pytorch/language-modeling/run_clm.py \
-        --model_name_or_path distilgpt2 \
-        --train_file {0} \
-        --do_train \
-        --num_train_epochs 3 \
-        --overwrite_output_dir \
-        --per_device_train_batch_size 2 \
-        --output_dir {1}
-    '''.format(file_name, output_dir)
-    process = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE)
-    output, error = process.communicate()
+# install transformers with 4.17.dev version
+with open(f'install_dev_transformers.sh', 'rb') as file:
+    script = file.read()
+_ = subprocess.call(script, shell=True)
+
+from config import *
+from fine_tune import fine_tune
+
 
 def main():
-    # install transformers with 4.17.dev version
-    with open('install_dev_transformers.sh', 'rb') as file:
-        script = file.read()
-    _ = subprocess.call(script, shell=True)
+    # get artist and prompt text from user
+    chosen_artist, chosen_prompt_text = get_user_input()
 
     # pull lyrics
-    file_name, output_dir = pull_lyrics()
+    pull_lyrics(chosen_artist)
 
     #fine tune DistilGPT2 with the lyrics
-    fine_tune(file_name, output_dir)
+    fine_tune()
+
+
+    generated_sequences = generate_lyrics(chosen_prompt_text)
+
+    print("\n\n\n*・゜・*:.。.*.。.:*・☆・゜・*:.。.*.。.:*・☆・゜・*:.。.*.。.:*・☆・゜・*:.。.:*・☆・゜・*:.。.*.。.:*・゜・*")
+    print(f"\t\t♪♫♪ This is \'{chosen_prompt_text}\' by {chosen_artist} ♪♫♪\n")
+    print(generated_sequences)
 
 if __name__ == '__main__':
     main()
