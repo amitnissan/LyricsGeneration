@@ -1,4 +1,4 @@
-echo "installing new version of transformers library"
+echo "installing a newer version of transformers library"
 
 git clone https://github.com/huggingface/transformers.git
 
