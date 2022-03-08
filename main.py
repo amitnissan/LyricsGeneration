@@ -1,5 +1,11 @@
 import subprocess
 import os
+from bert_score import score
+import torch
+import transformers
+import pandas as pd
+from config import *
+
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
@@ -26,10 +32,19 @@ def main():
 
     generated_sequences = generate_lyrics(chosen_prompt_text)
 
-    print("branch check")
     print("\n\n\n*・゜・*:.。.*.。.:*・☆・゜・*:.。.*.。.:*・☆・゜・*:.。.*.。.:*・☆・゜・*:.。.:*・☆・゜・*:.。.*.。.:*・゜・*")
     print(f"\t\t♪♫♪ This is \'{chosen_prompt_text}\' by {chosen_artist} ♪♫♪\n")
     print(generated_sequences)
+
+    data = pd.read_csv(f'{lyrics_dir_path}{chosen_artist}.csv')
+    texts = list(set(data.Lyrics))
+
+    print("Evaluating generated lyrics...")
+    cands = [generated_sequences]
+    P, R, F1 = score(cands, texts, lang="en", verbose=True)
+    print(f"Precision: {P}")
+    print(f"Recall: {R}")
+    print(f"F1: {F1}")
 
 
 if __name__ == '__main__':
