@@ -26,6 +26,7 @@ def main():
 
     generated_sequences = generate_lyrics(chosen_prompt_text)
 
+    print("branch check")
     print("\n\n\n*・゜・*:.。.*.。.:*・☆・゜・*:.。.*.。.:*・☆・゜・*:.。.*.。.:*・☆・゜・*:.。.:*・☆・゜・*:.。.*.。.:*・゜・*")
     print(f"\t\t♪♫♪ This is \'{chosen_prompt_text}\' by {chosen_artist} ♪♫♪\n")
     print(generated_sequences)
