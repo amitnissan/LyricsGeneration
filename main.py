@@ -1,6 +1,6 @@
 import subprocess
 import os
-from bert_score import score
+from bert_score import score, plot_example
 import torch
 import transformers
 import pandas as pd
@@ -45,6 +45,9 @@ def main():
     print(f"Precision: {P}")
     print(f"Recall: {R}")
     print(f"F1: {F1}")
+
+    # Cosine similarity matrix between the generated text and some input text
+    plot_example(cands, texts[0], lang="en")
 
 
 if __name__ == '__main__':
