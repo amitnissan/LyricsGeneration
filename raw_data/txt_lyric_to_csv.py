@@ -15,3 +15,6 @@ def raw_txt_to_csv(artist: str):
 if __name__ == '__main__':
     raw_txt_to_csv('avicii')
     raw_txt_to_csv('kanye')
+    raw_txt_to_csv('beatles')
+    raw_txt_to_csv('nirvana')
+    raw_txt_to_csv('britneyspears')

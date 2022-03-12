@@ -11,7 +11,7 @@ run the following:
 conda activate py38_pytorch
 /anaconda/envs/py38_pytorch/bin/python main.py
 ```
-In some cases, you'll need to run `main.py` twice for the library to be installed.
+<b>Important notice</b>: In some cases, you'll need to run `main.py` twice for the library to be installed.
 
 ## Usage
 Once the library is successfully installed, you'll be presented with the following prompt:

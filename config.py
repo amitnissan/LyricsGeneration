@@ -7,6 +7,7 @@ device = 'cuda'
 # fine tune hyperparameters
 num_epoch = 3
 batch_size = 2
+seed = 42
 
 # generating lyrics hyperparameters
 temperature = 0.7
