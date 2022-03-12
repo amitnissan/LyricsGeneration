@@ -20,7 +20,11 @@ Once the library is successfully installed, you'll be presented with the followi
 		♪♫♪ Welcome to our lyric generation machine ♪♫♪
 
 Here are the artists for today:
-	# 0: Avicii
+	# 0: Beatles
+	# 1: Britneyspears
+	# 2: Kanye
+	# 3: Nirvana
+	# 4: Avicii
 
 Please enter # of artist of choice:
 ```
