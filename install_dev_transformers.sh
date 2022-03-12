@@ -9,9 +9,12 @@ echo "Installing a newer version of transformers library"
 #  echo "finished installing"
 #fi
 
+echo 'Cloning repo'
 git clone https://github.com/huggingface/transformers.git
 
+echo ''
 pip install -e transformers/
+pip install bert_score==0.3.11
 
 echo "finished installing"
 
