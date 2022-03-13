@@ -11,8 +11,8 @@ def get_model_tokenizer(weights_dir):
     return model, tokenizer
 
 
-def generate_lyrics(prompt_text):
-    model, tokenizer = get_model_tokenizer(output_dir)
+def generate_lyrics(prompt_text, model_dir=output_dir):
+    model, tokenizer = get_model_tokenizer(model_dir)
 
     encoded_prompt = tokenizer.encode(prompt_text, add_special_tokens=False, return_tensors="pt")
 
