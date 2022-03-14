@@ -2,7 +2,7 @@ import subprocess
 from config import *
 
 
-def fine_tune():
+def fine_tune(chosen_artist):
     cmd = '''
     python transformers/examples/pytorch/language-modeling/run_clm.py \
         --model_name_or_path distilgpt2 \
@@ -13,6 +13,7 @@ def fine_tune():
         --per_device_train_batch_size {3} \
         --output_dir {1}
         --seed {4}
-    '''.format(text_for_fine_tune_file, output_dir, num_epoch, batch_size, seed)
+    '''.format(text_for_fine_tune_file, f'{output_dir}/{chosen_artist.lower()}', num_epoch, batch_size, seed)
+    print(f"\nRunning cmd: {cmd}")
     process = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE)
     output, error = process.communicate()

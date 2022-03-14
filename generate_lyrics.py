@@ -4,14 +4,14 @@ from transformers import GPT2LMHeadModel, GPT2Tokenizer
 
 def get_model_tokenizer(weights_dir):
     print("Loading Model ...")
-    model = GPT2LMHeadModel.from_pretrained(weights_dir)
+    model = GPT2LMHeadModel.from_pretrained(weights_dir, local_files_only=True)
     # model.to(device) FIXME line doesnt work
     print("Model Loaded ...")
-    tokenizer = GPT2Tokenizer.from_pretrained(weights_dir)
+    tokenizer = GPT2Tokenizer.from_pretrained(weights_dir, local_files_only=True)
     return model, tokenizer
 
 
-def generate_lyrics(prompt_text, model_dir=output_dir):
+def generate_lyrics(prompt_text, model_dir):
     model, tokenizer = get_model_tokenizer(model_dir)
 
     encoded_prompt = tokenizer.encode(prompt_text, add_special_tokens=False, return_tensors="pt")
