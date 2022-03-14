@@ -1,7 +1,7 @@
 # Misc config
 lyrics_dir_path = 'Data/'
 text_for_fine_tune_file = 'text_for_fine_tune.txt'
-output_dir = 'output'
+output_dir = 'trained_models'
 device = 'cuda'
 
 # fine tune hyperparameters

@@ -6,14 +6,19 @@ class IllegalArgumentError(ValueError):
     pass
 
 
-def get_user_input() -> (str, str):
+def get_user_input(from_interface: bool = False) -> (str, str):
     print("\n\n\n*・゜・*:.。.*.。.:*・☆・゜・*:.。.*.。.:*・☆・゜・*:.。.*.。.:*・☆・゜・*:.。.:*・☆・゜・*:.。.*.。.:*・゜・*")
     print("\t\t♪♫♪ Welcome to our lyric generation machine ♪♫♪\n")
     print("Here are the artists for today:")
     artists = [f for f in os.listdir(lyrics_dir_path) if os.path.isfile(os.path.join(lyrics_dir_path, f))]
     artists_dict = {i: artist.replace('.csv', '') for i, artist in enumerate(artists)}
+
+    if from_interface:
+        artists = [f for f in os.listdir(output_dir) if '_trained' in f]
+        artists_dict = {i: artist.replace('_trained', '') for i, artist in enumerate(artists)}
+
     for num_artist, artist in artists_dict.items():
-        print(f"\t# {num_artist}: {artist}")
+        print(f"\t# {num_artist}: {artist.capitalize()}")
 
     while True:
         try:
@@ -37,6 +42,6 @@ def get_user_input() -> (str, str):
 
     print("\n\n\n*・゜・*:.。.*.。.:*・☆・゜・*:.。.*.。.:*・☆・゜・*:.。.*.。.:*・☆・゜・*:.。.:*・☆・゜・*:.。.*.。.:*・゜・*")
     print(
-        f"\t\t♪♫♪ Generating a new song by {artists_dict[chosen_artist_number]} talking about \'{chosen_prompt_text}\'... ♪♫♪\n")
+        f"\t\t♪♫♪ Generating a new song by {artists_dict[chosen_artist_number].capitalize()} talking about \'{chosen_prompt_text}\'... ♪♫♪\n")
 
     return artists_dict[chosen_artist_number], chosen_prompt_text

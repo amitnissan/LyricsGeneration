@@ -4,10 +4,10 @@ from transformers import GPT2LMHeadModel, GPT2Tokenizer
 
 def get_model_tokenizer(weights_dir):
     print("Loading Model ...")
-    model = GPT2LMHeadModel.from_pretrained(weights_dir)
+    model = GPT2LMHeadModel.from_pretrained(weights_dir, local_files_only=True)
     # model.to(device) FIXME line doesnt work
     print("Model Loaded ...")
-    tokenizer = GPT2Tokenizer.from_pretrained(weights_dir)
+    tokenizer = GPT2Tokenizer.from_pretrained(weights_dir, local_files_only=True)
     return model, tokenizer
 
 
