@@ -20,9 +20,10 @@ def download_trained_models():
     _ = subprocess.call(script, shell=True)
 
 
-def used_trained_models_to_generate_and_evaluate(chosen_artist, chosen_prompt_text):
+def used_trained_models_to_generate_and_evaluate(chosen_artist, chosen_prompt_text, from_interface=False):
     # use fine tuned model for lyrics generation tasks given a subject
-    generated_sequences = generate_lyrics(chosen_prompt_text, f'{output_dir}/{chosen_artist.lower()}')
+    dir = f'{output_dir}/{chosen_artist.lower()}' + '_trained' if from_interface else ''
+    generated_sequences = generate_lyrics(chosen_prompt_text, dir)
 
     # evaluate generated lyrics
     P, R, F1, best_lyrics_index = evaluate(generated_sequences, chosen_artist.capitalize())
@@ -40,7 +41,7 @@ def main():
     # get artist and prompt text from user
     download_trained_models()
     chosen_artist, chosen_prompt_text = get_user_input(from_interface=True)
-    used_trained_models_to_generate_and_evaluate(chosen_artist, chosen_prompt_text)
+    used_trained_models_to_generate_and_evaluate(chosen_artist, chosen_prompt_text, from_interface=True)
 
 
 if __name__ == '__main__':
