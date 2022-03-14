@@ -5,15 +5,15 @@ output_dir = 'output'
 device = 'cuda'
 
 # fine tune hyperparameters
-num_epoch = 40
+num_epoch = 20
 batch_size = 2
 seed = 42
 
 # generating lyrics hyperparameters
-temperature = 0.4
-k = 20
+temperature = 0.7
+k = 40
 p = 0.9
 repetition_penalty = 3.0
 num_return_sequences = 20  # num generated songs
-length = 600
+length = 300
 stop_token = '|EndOfText|'

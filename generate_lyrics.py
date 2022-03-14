@@ -20,7 +20,7 @@ def generate_lyrics(prompt_text, model_dir=output_dir):
 
     output_sequences = model.generate(
         input_ids=encoded_prompt,
-        max_length=min(length, model.config.max_position_embeddings) + len(encoded_prompt[0]),
+        max_length=length,
         temperature=temperature,
         top_k=k,
         top_p=p,
