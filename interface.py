@@ -22,7 +22,7 @@ def download_trained_models():
 
 def used_trained_models_to_generate_and_evaluate(chosen_artist, chosen_prompt_text, from_interface=False):
     # use fine tuned model for lyrics generation tasks given a subject
-    dir = f'{output_dir}/{chosen_artist.lower()}' + '_trained' if from_interface else ''
+    dir = f'{output_dir}/{chosen_artist.lower()}' + ('_trained' if from_interface else '')
     generated_sequences = generate_lyrics(chosen_prompt_text, dir)
 
     # evaluate generated lyrics
