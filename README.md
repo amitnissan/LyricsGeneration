@@ -19,7 +19,7 @@ To use: run `./generate_song_interface.sh`
 
 Note: prepared models are the models we reported in the paper. This flow will download the models from google drive and
 inference a new song with your given text.<br><br>
-<b>Important</b>: Google can occasionally block the download if it was accessed too frequently. If the download fails,
+<b>IMPORTANT</b>: Google can occasionally block the download if it was accessed too frequently. If the download fails,
 one can either try again or download the models directly from
 the drive (just download the content of `trained_models/` to `path/of/project/trained_models/`).
 
