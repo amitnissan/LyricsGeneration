@@ -1,20 +1,37 @@
 # How a Song Is Born
+
 Using Deep Learning Models to Produce a Custom Song By Your Favorite Artist
 
 Natural Language Processing - 097215, Technion
 
-## Installation
-This projects requires a newer version of `huggingface`'s `tranformers` library. <br>
-run the following:
-
-```bash
-conda activate py38_pytorch
-/anaconda/envs/py38_pytorch/bin/python main.py
-```
-<b>Important notice</b>: In some cases, you'll need to run `main.py` twice for the library to be installed (the first run might end with an error).
-
 ## Usage
-Once the library is successfully installed, you'll be presented with the following prompt:
+
+After downloading the project to `path/of/project/`, run the following:
+
+1. `conda activate py38_pytorch`
+2. `cd path/of/project/`
+3. `chmod +x *.sh`
+
+### Using prepared models:
+
+Interface for running trained models.<br>
+To use: run `./generate_song_interface.sh`
+
+Note: prepared models are the models we reported in the paper. This flow will download the models from google drive and
+inference a new song with your given text.<br><br>
+<b>Important</b>: Google can occasionally block the download if it was accessed too frequently. If the download fails,
+one can either try again or download the models directly from
+the drive (just download the content of `trained_models/` to `path/of/project/trained_models/`).
+
+### Training your own model:
+
+run `./fine_tune_and_generate_song.sh`<br>
+This will train the model on an artist of your choice and generate a song from your given sentence.
+
+## User's input
+
+You'll be presented with the following prompt:
+
 ```
 *・゜・*:.。.*.。.:*・☆・゜・*:.。.*.。.:*・☆・゜・*:.。.*.。.:*・☆・゜・*:.。.:*・☆・゜・*:.。.*.。.:*・゜・*
 		♪♫♪ Welcome to our lyric generation machine ♪♫♪
@@ -33,18 +50,21 @@ Enter the <b>number</b> of the artist of choice.<br>
 Then, you'll choose the subject - that will be the opening of our new generates song.
 
 ```
-Enter a sentence you wish Avicii start with (for example: "COVID-19 was like a"...):
+Enter a sentence you wish Avicii start with (for example: "COVID-19 was like a"...). Plain text no quotes needed:
 ```
 
-After entering the subject, you will see the following message. Please allow some time, as the model fine tune itself with the artist of choice:
+After entering the subject (plain text no quotes), you will see the following message:
+
 ```
 *・゜・*:.。.*.。.:*・☆・゜・*:.。.*.。.:*・☆・゜・*:.。.*.。.:*・☆・゜・*:.。.:*・☆・゜・*:.。.*.。.:*・゜・*
 		♪♫♪ Generating a new song by Avicii talking about 'COVID-19 was like a'... ♪♫♪
 ```
 
 After the process is done, you'll see:
+
 ```
 *・゜・*:.。.*.。.:*・☆・゜・*:.。.*.。.:*・☆・゜・*:.。.*.。.:*・☆・゜・*:.。.:*・☆・゜・*:.。.*.。.:*・゜・*
 		♪♫♪ This is 'COVID-19 was like a' by Avicii ♪♫♪
 ```
+
 And your generated newly born song right after. Enjoy!
