@@ -12,7 +12,7 @@ After downloading the project to `path/of/project/`, run the following:
 2. `cd path/of/project/`
 3. `chmod +x *.sh`
 
-### Using prepared models:
+### (A) Using prepared models:
 
 Interface for running trained models.<br>
 To use: run `./generate_song_interface.sh`
@@ -23,7 +23,7 @@ inference a new song with your given text.<br><br>
 one can either try again or download the models directly from
 the drive (just download the content of `trained_models/` to `path/of/project/trained_models/`).
 
-### Training your own model:
+### (B) Training your own model:
 
 run `./fine_tune_and_generate_song.sh`<br>
 This will train the model on an artist of your choice and generate a song from your given sentence.
